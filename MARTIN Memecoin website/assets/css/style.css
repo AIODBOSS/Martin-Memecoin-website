@@ -1,0 +1,428 @@
+
+:root{
+  --green-900:#072f07;
+  --green-800:#0a3d0a;
+  --green-700:#115711;
+  --green-600:#187d18;
+  --green-500:#1ca31c;
+  --green-400:#2bd02b;
+  --text:#ecffec;
+  --muted:#c8f7c8;
+  --card: rgba(0,0,0,.18);
+  --glass: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.12);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  color:var(--text);
+  background: linear-gradient(180deg, var(--green-800), var(--green-700) 35%, var(--green-600) 70%, var(--green-500));
+}
+a{color:#e9ffe9;text-decoration:none}
+a:hover{opacity:.9}
+.container{width:min(1120px, 92%); margin:0 auto}
+
+/* Header */
+.site-header{
+  position:sticky; top:0; z-index:1000;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between; padding:10px 0;
+}
+.brand{display:flex; align-items:center; gap:10px}
+.brand-logo{height:34px; width:auto}
+.brand-name{font-weight:800; letter-spacing:.5px}
+.nav{display:flex; gap:16px; font-weight:600}
+.nav a{padding:8px 10px; border-radius:999px}
+.nav a:hover{background:var(--glass)}
+.menu-btn{display:none; background:none; border:0; cursor:pointer}
+.menu-btn span{display:block; width:22px; height:2px; background:#fff; margin:4px 0; transition:.2s}
+
+/* Hero */
+.hero{position:relative; min-height:72vh; display:grid; place-items:center; text-align:center; overflow:hidden}
+.hero-bg{
+  position:absolute; inset:0;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.12), transparent 60%);
+  pointer-events:none;
+}
+.hero-slides{position:absolute; inset:0; display:grid; place-items:center; opacity:.9}
+.hero-slides img{position:absolute; width:min(760px, 88vw); height:auto; opacity:0; transform:translateY(10px); transition:opacity 1.2s ease, transform 1.2s ease}
+.hero-slides img.active{opacity:1; transform:translateY(0)}
+.hero .title{font-size:clamp(28px, 4vw, 52px); margin:0 0 8px; text-shadow:0 8px 28px rgba(0,0,0,.45)}
+.hero .subtitle{margin:0 0 18px; color:var(--muted)}
+.cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; justify-content:center; padding:12px 18px; border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow); font-weight:700; cursor:pointer; transition:transform .12s ease, background .2s}
+.btn.primary{background:linear-gradient(180deg, var(--green-400), var(--green-500)); color:#082a08}
+.btn.primary:hover{transform:translateY(-1px)}
+.btn.outline{background:transparent}
+.btn.tiny{padding:6px 10px; font-size:12px; border-radius:10px}
+.ca{display:flex; align-items:center; gap:10px; justify-content:center; margin-top:14px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace}
+.ca code{background:var(--glass); padding:6px 8px; border-radius:10px; border:1px solid var(--border)}
+
+.scroll-indicator{position:absolute; bottom:12px; left:0; right:0; text-align:center; opacity:.6}
+
+/* Sections */
+.section{padding:64px 0}
+.section-head{margin-bottom:26px; text-align:center}
+.section-head h2{font-size:clamp(22px, 3vw, 36px); margin:0 0 6px}
+.section-head p{color:var(--muted); margin:0}
+
+.about-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+.about-card{background:var(--card); border:1px solid var(--border); padding:18px; border-radius:16px; backdrop-filter: blur(6px)}
+
+.slideshow{position:relative; height:340px; border-radius:18px; overflow:hidden; border:1px solid var(--border); background:rgba(0,0,0,.18); display:grid; place-items:center; box-shadow:var(--shadow)}
+.slideshow > *{position:absolute; inset:0; display:grid; place-items:center; opacity:0; transition:opacity 1s ease}
+.slideshow img{max-width:100%; max-height:100%; padding:12px}
+.slideshow .active{opacity:1}
+
+.gallery{padding-bottom:90px}
+.site-footer{border-top:1px solid var(--border); background:rgba(0,0,0,.35)}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 0}
+.footer-brand{display:flex; align-items:center; gap:10px}
+.copy{text-align:center; padding:10px 0; opacity:.7;}
+
+/* Mobile menu open */
+.nav.open{
+  display:flex; flex-direction:column; position:absolute; right:16px; top:58px; background:rgba(0,0,0,.75);
+  padding:12px; border-radius:14px; border:1px solid var(--border)
+}
+
+/* Hero slides behind text */
+.hero-slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-slides img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slides img.active {
+  opacity: 0.25; /* subtle, not blocking */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* content above */
+  text-align: center;
+  color: #fff;
+}
+
+
+.section.chart {
+  position: relative;
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Video background */
+.section.chart .chart-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.4; /* adjust transparency */
+}
+
+/* Foreground content */
+.section.chart .container {
+  position: relative;
+  z-index: 2;
+}
+
+.section.chart .section-head h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.section.chart .section-head p {
+  color: #eee;
+}
+
+.section.chart .chart-frame {
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid #2d6a4f;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+}
+
+.section.chart iframe {
+  display: block;
+  width: 100%;
+  height: 500px;
+}
+
+
+/* Header container */
+.site-header {
+  background: transparent;
+  padding: 15px 0;
+  position: relative;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ticker {
+  color: #7CFC00; /* MARTIN green */
+}
+
+/* Toggle button */
+.toggle-btn {
+  background: none;
+  border: 2px solid #7CFC00;
+  color: #7CFC00;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #7CFC00;
+  color: #000;
+}
+
+/* Hidden by default */
+.header-items {
+  display: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.header-items.active {
+  display: flex;
+}
+
+/* Chart + Socials */
+.header-items img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+.header-items img:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* Tooltip */
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  background: #000;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+}
+
+.chart-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Header general */
+.site-header {
+  background: #0d1f0d;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.brand-logo {
+  height: 35px;
+}
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00b894;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  gap: 20px;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav a:hover {
+  color: #00b894;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+.social-icons .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1a2d1a;
+  color: #fff;
+  font-size: 18px;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.social-icons .icon:hover {
+  transform: scale(1.15) rotate(8deg);
+  box-shadow: 0 0 12px #00b894;
+  background: #00b894;
+  color: #0d1f0d;
+}
+
+/* Toggle Button */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Collection slideshow container */
+#martinCollection {
+  position: relative;
+  width: 100%;
+  max-width: 800px;   /* adjust if you want smaller/larger frame */
+  height: 500px;      /* fixed height for consistency */
+  margin: auto;
+  overflow: hidden;
+  background: #006400; /* Martin green background for uncovered areas */
+  border-radius: 12px;
+}
+
+/* Slides inside collection */
+#martinCollection > * {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* Image styling */
+#martinCollection img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* keeps proportions without crop */
+  border-radius: 12px;
+}
+
+/* Active slide */
+#martinCollection .active {
+  opacity: 1;
+}
+
+
+
+/* Community Gallery Styles */
+#communityGallery {
+  position: relative;
+  width: 100%;
+  height: 400px; /* adjust as needed */
+  overflow: hidden;
+}
+#communityGallery img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+#communityGallery img.active {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #martinCollection img {
+    max-height: 300px; /* shorter on mobile */
+  }
+}
+
+/* MOBILE VERSION */
+ @media only screen and (max-width: 600px) {
+  .nav{display:none}
+  .menu-btn{display:block}
+  .about-grid{grid-template-columns:1fr}
+  .hero{min-height:64vh}
+  .brand-logo{height:30px}
+  .header-inner{padding:8px 0}
+ 
+  }
+  .social-icons .icon {
+  display: fixed;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+
+
+}
